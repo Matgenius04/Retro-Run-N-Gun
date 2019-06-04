@@ -101,6 +101,9 @@ const start = () => {
         document.querySelector("canvas").scrollIntoView({behavior:"smooth"});
         setTimeout(()=>{window.requestAnimationFrame(draw)},50);
     });
+    for (let i=0;i<=10;i++) {
+        newEnemy();
+    }
 };
 
 start();
@@ -123,7 +126,7 @@ async function draw() {
     if (mousedown==true && frame%15==0) {
         newBullet();
     }
-    if (frame%600==0) {
+    if (frame%300==0) {
         newEnemy();
     }
     for (let i=0;i<Composite.allBodies(engine.world).filter((v)=>{return v.label.includes("enemy-");}).length;i++) {
@@ -173,7 +176,7 @@ async function draw() {
         }
     }
     frame++;
-    ((frame) % 50==0) ? moverate = 3+(Math.log(frame/50)): null;
+    ((frame) % 50==0) ? moverate = 3+(1.5*Math.log(frame/50)): null;
     Body.setPosition(player,{x:player.position.x-moverate,y:player.position.y})
 }
 function newGround() {
