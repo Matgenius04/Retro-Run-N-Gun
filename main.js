@@ -222,13 +222,13 @@ function newBullet() {
             angle=(((2*Math.PI)/2)+Math.atan(transV0/transV1));
         }
     bullet_number++;
-    let bullet = Bodies.circle(player.position.x,player.position.y,8,{
+    let bullet = Bodies.circle(player.position.x,player.position.y,15,{
         label:"bullet-"+bullet_number,
         force:{x:Math.sin(angle)/30,y:Math.cos(angle)/30},
         collisionFilter:{
             mask:topCategory,
-            mass: 1,
-            density: 999999999999999,
+            mass: 0.0000000000001,
+            density: 0.000000001,
             color:"white",
         }
     });
@@ -264,6 +264,9 @@ function newEnemy() {
     World.add(engine.world,enemy);
 }
 function newObstacle() {
+
+}
+function gameOver() {
 
 }
 // window.requestAnimationFrame(draw);
