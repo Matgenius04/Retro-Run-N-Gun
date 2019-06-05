@@ -16,13 +16,32 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="overlay">
+        <div id="screen">
             <div id="starting-screen">
                 <h1 id="name">Simple Platformer</h1>
-                <button id="start-button"><h2>Start</h2></button>
+                <button id="start-button" style="margin-top:0;"><h2>Start</h2></button>
                 <button id="menu-button"><h2>Menu</h2></button>
+                <div id="info" style="display:flex;justify-content: center;flex-direction:column;">
+                    <div id="info-box"><p>Use W to jump, A to move left, D to move right, and hold down the mouse to shoot!</p><p>Click For More Advice!</p></div>
+                    <div id="info-box-circle-2"></div>
+                    <div id="info-box-circle-1"></div>
+                    <div id="fake-player"><h6>You</h6></div>
+                </div>
+            </div>
+            <div id="menu-screen" hidden>
+                <div id="back" onclick="scrollBack()"><span>></span></div>
+                <h2>Sound Effects</h2>
+                <input type="range" id="Sound-Effects-Volume" value=100 min="0" max="100" step=1 list="tickmarks" onchange="changeEffectsVolume()">
+                <p id="Sound-Effects">100%</p>
+                <h2>Music</h2>
+                <input type="range" id="Music-Volume" value=100 min="0" max="100" step="1" list="tickmarks"  onchange="changeMusicVolume()">
+                <p>100%</p>
             </div>
         </div>
+        <div id="overlay" hidden>
+            <div id="pause-screen"></div>
+        </div>
+        <div id="game-over"><h1>Game Over</h1></div>
         <script src="matter.min.js"></script>
         <script src="main.js"></script>
     </body>
