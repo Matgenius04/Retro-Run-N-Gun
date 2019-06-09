@@ -2,47 +2,159 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" style="width:100%;height:100%;"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Platformer?</title>
-        <meta name="description" content="Simple Platformer">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body style="width:100%;height:100%;margin:0;overflow:hidden">
-        <!--[if lt IE 7]>
+<!--[if gt IE 8]><!-->
+<html class="no-js" style="width:100%;height:100%;">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Platformer?</title>
+    <meta name="description" content="Simple Platformer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body style="width:100%;height:100%;margin:0;overflow:hidden">
+    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="screen">
-            <div id="starting-screen">
-                <h1 id="name">Simple Platformer</h1>
-                <button id="start-button" style="margin-top:0;"><h2>Start</h2></button>
-                <button id="menu-button"><h2>Menu</h2></button>
-                <div id="info" style="display:flex;justify-content: center;flex-direction:column;">
-                    <div id="info-box"><p>Use W to jump, A to move left, D to move right, and hold down the mouse to shoot!</p><p>Click For More Advice!</p></div>
-                    <div id="info-box-circle-2"></div>
-                    <div id="info-box-circle-1"></div>
-                    <div id="fake-player"><h6>You</h6></div>
+    <div id="screen">
+        <div id="starting-screen">
+            <h1 id="name">Simple Platformer</h1>
+            <button id="start-button" style="margin-top:0;" class="big-button">
+                <h2>Start</h2>
+            </button>
+            <button id="menu-button" class="big-button">
+                <h2>Menu</h2>
+            </button>
+            <div id="info" style="display:flex;justify-content: center;flex-direction:column;">
+                <div id="info-box">
+                    <p>Use W to jump, A to move left, D to move right, and hold down the mouse to shoot!</p>
+                    <p>Click For More Advice!</p>
+                </div>
+                <div id="info-box-circle-2"></div>
+                <div id="info-box-circle-1"></div>
+                <div id="fake-player">
+                    <h6>You</h6>
                 </div>
             </div>
-            <div id="menu-screen" hidden>
-                <div id="back" onclick="scrollBack()"><span>></span></div>
-                <h2>Sound Effects</h2>
-                <input type="range" id="Sound-Effects-Volume" value=100 min="0" max="100" step=1 list="tickmarks" onchange="changeEffectsVolume()">
-                <p id="Sound-Effects">100%</p>
-                <h2>Music</h2>
-                <input type="range" id="Music-Volume" value=100 min="0" max="100" step="1" list="tickmarks"  onchange="changeMusicVolume()">
-                <p>100%</p>
+        </div>
+        <div id="menu-screen" hidden>
+            <div id="back" onclick="scrollBack()"><span>></span></div>
+            <h2>Sound Effects</h2>
+            <input type="range" id="Sound-Effects-Volume" value=100 min="0" max="100" step=1 list="tickmarks"
+                onchange="changeEffectsVolume()">
+            <p id="Sound-Effects">100%</p>
+            <h2>Music</h2>
+            <input type="range" id="Music-Volume" value=100 min="0" max="100" step="1" list="tickmarks"
+                onchange="changeMusicVolume()">
+            <p>100%</p>
+        </div>
+    </div>
+    <div id="overlay" hidden>
+        <div id="score"><span style="text-shadow: 0px 0px 15px white">0</span></div>
+        <div id="pause-screen">
+            <div id="bullet-speed" class="upgrade-box">
+                <span>Bullet Speed</span>
+                <div class="upgrade-bar">
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                </div>
+                <button id="bullet-speed-upgrade" class="upgrade-button"><p>Upgrade</p></button>
+                <p>Price:</p>
+            </div>
+            <div id="reload-rate" class="upgrade-box">
+                <span>Reload Rate</span>
+                <div class="upgrade-bar">
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                </div>
+                <div class="upgrade-bar"></div>
+                <button id="reload-rate-upgrade" class="upgrade-button"><p>Upgrade</p></button>
+                <p>Price:</p>
+            </div>
+            <div id="bullet-damage" class="upgrade-box">
+                <span>Bullet Damage</span>
+                <div class="upgrade-bar">
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                </div>
+                <div class="upgrade-bar"></div>
+                <button id="bullet-damage-upgrade" class="upgrade-button"><p>Upgrade</p></button>
+                <p>Price:</p>
+            </div>
+            <div id="jump-height" class="upgrade-box">
+                <span>Jump Height</span>
+                <div class="upgrade-bar">
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                </div>
+                <div class="upgrade-bar"></div>
+                <button id="jump-height-upgrade" class="upgrade-button"><p>Upgrade</p></button>
+                <p>Price:</p>
+            </div>
+            <div id="score-multiplier" class="upgrade-box">
+                <span>Score Multiplier</span>
+                <div class="upgrade-bar">
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                    <div class="upgrade-bar-mark"></div>
+                </div>
+                <div class="upgrade-bar"></div>
+                <button id="score-multiplier-upgrade" class="upgrade-button"><p>Upgrade</p></button>
+                <p>Price:</p>
+            </div>
+            <div id="abilites" class="upgrade-box">
+                <span>WIP</span>
             </div>
         </div>
-        <div id="overlay" hidden>
-            <div id="pause-screen"></div>
-        </div>
-        <div id="game-over"><h1>Game Over</h1></div>
-        <script src="matter.min.js"></script>
-        <script src="main.js"></script>
-    </body>
+    </div>
+    <div id="game-over">
+        <h1>Game Over</h1>
+    </div>
+    <script src="matter.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
 </html>
