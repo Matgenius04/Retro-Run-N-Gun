@@ -193,6 +193,15 @@ function yolo() {
             document.body.querySelector("canvas").height = window.innerHeight;
             document.body.querySelector("canvas").width = window.innerWidth;
             document.body.scroll(0, document.body.clientWidth);
+            if (running == false) {
+                document.body.querySelector("#score").style.transition = "2s all";
+                document.body.querySelector("#score").children[0].style.textShadow = "white 0px 0px 60px";
+                document.body.querySelector("#score").style.top = `${(30*document.body.clientHeight)/100}px`;
+                document.body.querySelector("#score").style.transform = "rotateY(360deg) skewX(-10deg)";
+                document.body.querySelector("#score").style.fontSize = "1rem";
+                document.body.querySelector("#score").children[0].innerHTML = `Final Score: ${score}`;
+                document.body.querySelector("#score").style.right = `${(document.body.clientWidth-document.body.querySelector("#score").clientWidth)/2}px`;
+            }
         });
         document.body.querySelector("#start-button").addEventListener("click", () => {
             if (running == false) {
@@ -458,7 +467,7 @@ function yolo() {
         const prevX = arr[arr.length - 1].position.x + ((arr[arr.length - 1].bounds.max.x - arr[arr.length - 1].bounds.min.x) / 2);
         const prevY = arr[arr.length - 1].position.y + ((arr[arr.length - 1].bounds.max.y - arr[arr.length - 1].bounds.min.y) / 2);
         let mult = (Math.random() <= 0.5) ? 1 : -1;
-        let range = (mult < 0) ? document.body.clientHeight - prevY - 60 : 150;
+        let range = (mult < 0) ? document.body.clientHeight - prevY - 60 : 135;
         const addH = Math.random() * range + 100;
         const addW = Math.random() * 400 + 50;
         let x = prevX + addW;
@@ -559,7 +568,13 @@ function yolo() {
             document.body.querySelector("#game-over").style.display = "block";
             let times = 0;
             repeat();
-
+            document.body.querySelector("#score").style.transition = "2s all";
+            document.body.querySelector("#score").children[0].style.textShadow = "white 0px 0px 60px";
+            document.body.querySelector("#score").style.top = `${(30*document.body.clientHeight)/100}px`;
+            document.body.querySelector("#score").style.transform = "rotateY(360deg) skewX(-10deg)";
+            document.body.querySelector("#score").style.fontSize = "1rem";
+            document.body.querySelector("#score").children[0].innerHTML = `Final Score: ${score}`;
+            document.body.querySelector("#score").style.right = `${(document.body.clientWidth-document.body.querySelector("#score").clientWidth)/2}px`;
             function repeat() {
                 document.body.querySelector("#game-over").style.left = `${(Number(document.body.querySelector("#game-over").style.left.replace("vw",""))+(8/(times)))}vw`;
                 if (Math.floor(Number(document.body.querySelector("#game-over").style.left.replace("vw", ""))) <= 0) {
