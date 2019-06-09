@@ -12,6 +12,9 @@ yolo();
 //     return true;
 // }; // Comment out when debugging
 function yolo() {
+    document.body.querySelector("#score").style.right = "0";
+    document.body.querySelector("#score").style.top = "0";
+    document.body.querySelector("#score").style.textAlign = "right";
     let score = 0;
     if (document.body.querySelector("canvas")) {
         document.body.querySelector("canvas").remove();
@@ -205,16 +208,16 @@ function yolo() {
         });
         document.body.querySelector("#start-button").addEventListener("click", () => {
             if (running == false) {
-            document.body.querySelector("canvas").hidden = false;
-            document.body.querySelector("canvas").scrollIntoView({
-                behavior: "smooth"
-            });
-            setTimeout(() => {
-                window.requestAnimationFrame(draw);
-                running = true;
-                document.body.querySelector("#overlay").hidden = false;
-            }, 50);
-        }
+                document.body.querySelector("canvas").hidden = false;
+                document.body.querySelector("canvas").scrollIntoView({
+                    behavior: "smooth"
+                });
+                setTimeout(() => {
+                    window.requestAnimationFrame(draw);
+                    running = true;
+                    document.body.querySelector("#overlay").hidden = false;
+                }, 50);
+            }
         });
         document.body.querySelector("#menu-button").addEventListener("click", () => {
             document.body.querySelector("#menu-screen").hidden = false;
@@ -255,6 +258,7 @@ function yolo() {
         jump = true,
         shoot = true,
         moverate = 5;
+
     function draw() {
         if (paused == false && running == true) {
             setTimeout(() => {
@@ -442,7 +446,7 @@ function yolo() {
                 }
             }
             frame++;
-            ((frame) % 50 == 0) ? moverate = 7 + (1.5 * Math.log(frame / 50)): null;
+            ((frame) % 100 == 0) ? moverate = 5 + (1.25 * Math.log(frame / 100)): null;
             Body.setPosition(player, {
                 x: player.position.x - moverate,
                 y: player.position.y
@@ -556,9 +560,9 @@ function yolo() {
         World.add(engine.world, enemy);
     }
 
-    function newObstacle() {
+    // function newObstacle() {
 
-    }
+    // }
 
     function gameOver() {
         running = false;
@@ -575,11 +579,14 @@ function yolo() {
             document.body.querySelector("#score").style.fontSize = "1rem";
             document.body.querySelector("#score").children[0].innerHTML = `Final Score: ${score}`;
             document.body.querySelector("#score").style.right = `${(document.body.clientWidth-document.body.querySelector("#score").clientWidth)/2}px`;
+
             function repeat() {
-                document.body.querySelector("#game-over").style.left = `${(Number(document.body.querySelector("#game-over").style.left.replace("vw",""))+(8/(times)))}vw`;
-                if (Math.floor(Number(document.body.querySelector("#game-over").style.left.replace("vw", ""))) <= 0) {
-                    times++;
-                    setTimeout(() => (repeat()), 1);
+                if (running == false) {
+                    document.body.querySelector("#game-over").style.left = `${(Number(document.body.querySelector("#game-over").style.left.replace("vw",""))+(8/(times)))}vw`;
+                    if (Math.floor(Number(document.body.querySelector("#game-over").style.left.replace("vw", ""))) <= 0) {
+                        times++;
+                        setTimeout(() => (repeat()), 1);
+                    }
                 }
             }
         }, 50);
